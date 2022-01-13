@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    let father = {
+      name:'张三',
+      age:40,
+      fn:function () {
+        console.log('fn...')
+      },
+      arrs:{
+        zz:'arr',
+        type:'arrays',
+        info:[10,2,3]
+      },
+      fns:undefined
+    }
+    Object.prototype.hobbys = function () {
+      console.log('xihuan')
+    }
+
+    // let sons = father; 不能简单的赋值，这样会改变原来的数据
+
+    // let sons = JSON.parse(JSON.stringify(father)) //此方法会将函数及undefined删除掉
+
+    // 03 深拷贝
+    function deepCopy (obj) {
+      let objs = Array.isArray(obj)? [] : {};
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)){
+          if (typeof obj[key] == "object") {
+            objs[key] = deepCopy(obj[key]);
+          }else{
+            objs[key] = obj[key];
+          }
+          console.log(key)
+          
+        }
+      }
+      return objs
+    }
+    // console.log(sons)
+    let sons = deepCopy(father)
+    console.log(sons)
+    sons.arrs.zz = "ffff"
+  </script>
+</body>
+</html>

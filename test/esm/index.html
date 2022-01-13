@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <script src="./b.js" type="module"></script> -->
+  <script type="module">
+
+    // document.onclick = async () => {  //按需加载
+    //   await import('./b.js').then((res) => {
+    //     console.log(res)
+    //   })
+    //   console.log('123')
+    // }
+
+
+    async function times () {
+      await new Promise((res,rej) => {
+        setTimeout(function () {
+          console.log('123')
+          res()
+        },1000)
+      })
+      console.log('hh')
+    }
+
+    times()
+
+
+  </script>
+</body>
+</html>

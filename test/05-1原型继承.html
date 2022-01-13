@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function deepCopy (obj) { //深拷贝
+      let objs = Array.isArray(obj)? [] : {};
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)){
+          if (typeof obj[key] == "object") {
+            objs[key] = deepCopy(obj[key]);
+          }else{
+            objs[key] = obj[key];
+          }
+          // console.log(key)
+          
+        }
+      }
+      return objs
+    }
+
+    function Father (name,age,hobby) {
+      this.name = name;
+      this.age = age
+    }
+    Father.prototype.hobby = function () {
+      console.log('喜欢--象棋')
+    }
+    let father = new Father('lisi',30,'篮球')
+  
+
+    function Son (name,age,hobby) {
+      Father.call(this,name,age,hobby)
+    }
+    Son.prototype = deepCopy(Father.prototype);
+    // let Trans = function () {};
+    // Trans.prototype = Father.prototype;
+    // Trans.prototype.constructor = Trans;
+    // Son.prototype = new Trans()
+
+    let sons = new Son('zs',20,'篮球')
+    Son.prototype.hobby = function () {
+      console.log('喜欢篮球')
+    }
+    father.hobby()
+    sons.hobby()
+  </script>
+</body>
+</html>

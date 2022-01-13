@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    let tmp;
+    function Person (name,age){
+      this.name = name;
+      this.age = age;
+      tmp = this;
+    }
+
+    Person.prototype.hobby = function () {
+      console.log('喜欢篮球',this)
+    }
+
+    let zs = new Person('张三',30)
+    // let ls = new Person('李四',20)
+    console.log(zs,tmp)
+    zs.hobby()
+    console.log(Person.prototype.constructor === Person);
+    console.log(zs.__proto__ === Person.prototype)
+  </script>
+</body>
+</html>

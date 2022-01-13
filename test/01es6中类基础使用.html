@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    /**
+      class  extends  super  static
+    */
+
+    //es6 构造函数
+    class Person {
+      static hobby() {
+        console.log('喜欢学习')
+      }
+      height = "178cm";
+      #weight = "100kg";  //私有成员
+      constructor (name,age) {
+        this.name = name;
+        this.age = age
+      }
+      // methods
+      getName () {
+        console.log(this.name)
+        console.log(this.#weight) //私有化成员可以通过方法调用
+      }
+    }
+
+    let person = new Person('张三',20)
+    console.log(person);
+    console.log(Person.hobby());  //静态方法只能通过类来调用
+
+    //es5 构造函数
+    function Persons (...args) {
+      this.name = args[0];
+      this.age = args[1];
+      return this;
+    }
+    Persons.prototype.goes = function () {
+      console.log(this.age)
+    }
+    let ps = new Persons('李四',30)
+    console.log(ps)
+
+
+    /* extends super*/
+
+    class Father {
+      constructor (...args) {
+        this.height = args[0];
+        console.log(args)
+      }
+      hobby () {
+        console.log(this)
+      }
+    }
+
+    class Son extends Father {
+      constructor (height,age) {
+        super(height,age) //继承的时候super必须要
+      }
+    }
+    let father =  new Father("100cm")
+    console.log(father);
+    father.hobby()
+    let sons = new Son('170cm',20)
+    console.log(sons)
+    sons.hobby()
+
+    /**
+     * static
+     * 1 只能被类调用
+     * 2 可以实现单例模式，保证一个类只能被实例化一次
+     *  */ 
+    class Shanghai {
+      static nums;
+      constructor (...args) {
+        this.name = args[0];
+
+        if (Shanghai.nums) {
+          return Shanghai.nums
+        }else{
+          Shanghai.nums = this;
+        }
+      }
+      does () {
+        console.log(`我是${this.args[0]}`)
+      }
+    }
+
+    let shanghai = new Shanghai('shanghai')
+    console.log(shanghai)
+    let beijing = new Shanghai('beijing')
+    console.log(beijing)
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    function Father(name,age) {
+      this.name = name;
+      this.age = age;
+      this.fn = function () {
+        console.log(this)
+      }
+    }
+
+    function Son(name,age) {
+      Father.call(this,name,age);
+      this.sex = "男"
+    }
+
+    let zhangsan = new Son('张三',30)
+    console.log(zhangsan);
+    zhangsan.fn()
+  </script>
+</body>
+</html>
